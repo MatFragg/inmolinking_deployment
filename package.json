@@ -46,5 +46,8 @@
     "nodemailer": "^6.9.14",
     "pug": "^3.0.3",
     "sequelize": "^6.37.3"
+  },
+  "engines": {
+  "node": "20.18.1"
   }
 }
