@@ -57,3 +57,9 @@ const port = process.env.port || 4950;
 app.listen(port, () => {
     console.log('El servidor esta funcionando en el puerto %d',port)
 });
+
+process.on('SIGINT', async () => {
+    console.log('Cerrando conexiones de la base de datos...');
+    await db.close();
+    process.exit(0);
+});
