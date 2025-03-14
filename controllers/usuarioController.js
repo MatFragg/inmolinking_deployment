@@ -38,7 +38,7 @@ const autenticar = async (req,res) => {
 
     // Comprobar si el usuario existe
     const user = await User.findOne({where: {email}})
-    if(!resultado.isEmpty()){
+    if(!user){
         // Errores
         return res.render('auth/login', {
             pagina: 'Iniciar Sesión',
@@ -46,6 +46,9 @@ const autenticar = async (req,res) => {
             errores: [{msg: 'El Usuario No Existe'}]
         })
     } 
+
+    
+
     //Confirmar si el usuario se encuentra registrado
     if(!user.confirmado){
         return res.render('auth/login', {
@@ -86,7 +89,6 @@ const formularioRegistro = (req,res) => {
 }
 
 const register = async (req,res) => {
-    console.log(req.body)
 
     // Validación
     await check('nombre').notEmpty().withMessage('No es un nombre').run(req)
