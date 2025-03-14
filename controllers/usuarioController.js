@@ -38,7 +38,11 @@ const autenticar = async (req,res) => {
 
     // Comprobar si el usuario existe
     const user = await User.findOne({where: {email}})
+    console.log("Valor de user:", user);
+    console.log("Tipo de user:", typeof user);
+    
     if(!user){
+        console.log("El usuario no fue encontrado en la base de datos.");
         // Errores
         return res.render('auth/login', {
             pagina: 'Iniciar Sesión',
@@ -46,8 +50,6 @@ const autenticar = async (req,res) => {
             errores: [{msg: 'El Usuario No Existe'}]
         })
     } 
-
-    
 
     //Confirmar si el usuario se encuentra registrado
     if(!user.confirmado){
