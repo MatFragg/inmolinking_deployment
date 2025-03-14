@@ -1,0 +1,18 @@
+doctype html
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title InmoLinking | #{pagina}
+        block styles
+        link(rel="stylesheet", href="/css/app.css") 
+    body(class="min-h-scree bg-gray-50")
+        if isAuthenticated
+            include includes/header-admin
+        else
+            include includes/header-app
+
+        main(class="mx-auto container mt-10 px-2 pt-24 md:pt-0")
+            block contenido
+
+        block scripts

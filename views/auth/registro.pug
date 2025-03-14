@@ -1,0 +1,69 @@
+extends ../layout/index
+
+block contenido 
+    div.py-10
+        h1.text-6xl.my-10.font-extrabold.text-center Inmo
+            span.font-normal Linking             
+        h2.text-2xl.text-center.font-extrabold= pagina /* Crear Cuenta*/
+
+        if errores
+            div(class="max-w-md mx-auto my-10")
+                each error in errores
+                    p.bg-red-600.text-white.uppercase.text-xs.text-center.p-2.mb-1.font-bold= error.msg 
+                    
+        div(class="mt-8 mx-auto max-w-4xl py-8 px-4 shadow bg-white" x-data="{tipoAgente: '' }") <!-- Alpine.js -->
+            form.space-y-5(method="POST" action="/auth/registro")
+                input(type="hidden" name="_csrf" value= csrfToken)
+                div(class="flex gap-4")
+                    div(class="w-1/2")
+                        label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="nombre") Tu Nombre
+                        input#nombre(class="w-full p-3 border border-gray-300 rounded-md placeholder-gray-400 " placeholder="Tu Nombre" type="text" name="nombre" value= user ? user.nombre : '')
+
+                    div(class="w-1/2")
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="email") Correo Electrónico
+                        input#email(class="w-full p-3 border border-gray-300 rounded-md placeholder-gray-400" placeholder="Tu email" type="email" name="email" value= user ? user.email : '')
+
+                div(class="flex gap-4")
+                    div(class="w-1/2")
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="telefono") Telefono
+                        input#telefono(class="w-full p-3 border border-gray-300 rounded-md placeholder-gray-400" placeholder="Tu Telefono" type="text" name="telefono")
+
+                    div(class="w-1/2")
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="password") Contraseña
+                        input#password(class="w-full p-3 border border-gray-300 rounded-md placeholder-gray-400" placeholder="Tu Password" type="password" name="password")
+
+                    div(class="w-1/2")
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="repetir_password") Confirmar Contraseña
+                        input#repetir_password(class="w-full p-3 border border-gray-300 rounded-md placeholder-gray-400" placeholder="Repite tu Password" type="password" name="repetir_password")
+                    
+
+                div
+                    label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="tipoAgente") Tipo de Agente
+                    select#tipoAgente(x-model="tipoAgente" class="w-3/6 p-3 border border-gray-300 rounded-md" name="tipoAgente")
+                        option(value="" disabled selected) Selecciona un tipo de Usuario
+                        option(value="independiente") Persona o Agente Independiente
+                        option(value="empresa") Agente de Empresa
+
+                template(x-if="tipoAgente === 'independiente'")
+                    div(class="flex gap-4")
+                        div(class="w-1/2")
+                            label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="dni") DNI
+                            input#dni(class="w-full p-3 border border-gray-300 rounded-md placeholder-gray-400" placeholder="Tu DNI" type="text" name="dni")
+                    
+                template(X-if="tipoAgente === 'empresa'")
+                    div(class="flex gap-4")
+                        div(class="w-1/2")
+                            labe.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="razon_social") Razon Social
+                            input#razon_social(class="w-full p-3 border border-gray-300 rounded-md placeholder-gray-400" placeholder="Razon Social de la Empresa" type="text" name="razon_social")
+
+                        div(class="w-1/2")
+                            label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="ruc") Ruc
+                            input#ruc(class="w-full p-3 border border-gray-300 rounded-md placeholder-gray-400" placeholder="Ruc de la Empresa" type="text" name="ruc")
+
+
+                div(class="relative w-3/6 mx-auto")
+                    div.flex.justify-between.mb-2.my-16
+                        a.text-gray-900.text-xs(href="/auth/login") ¿Ya tienes cuenta? Inicia Sesión 
+                        a.text-gray-900.text-xs(href="/auth/olvide-password") Olvide mi password
+
+                    input(class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 cursor-pointer" type="submit" value="Crear Cuenta")

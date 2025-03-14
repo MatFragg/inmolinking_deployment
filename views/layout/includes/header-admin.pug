@@ -1,0 +1,37 @@
+header(class="bg-cyan-600 p-4 max-md:fixed top-0 left-0 w-full z-50")
+    div.container.mx-auto.flex.justify-between 
+        a(href="/")
+            h1(class="my-5 md:flex md:items-center text-2xl text-white font-extrabold text-center") Inmo
+                span.font-normal Linking
+            
+        button(class="block md:hidden text-white md:items-center" id="menu-responsive")
+            svg(width="24" height="24", fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+                path(d="M4 6h16M4 12h16m-7 6h7" class="w-6 h-6")
+
+        nav(class="my-5 text-sm md:flex md:items-center md:gap-8 font-bold text-white hidden")
+            a(href="/mis-propiedades") Mis Propiedades
+            a(href="") Mi Perfil
+
+            form(action="/auth/cerrar-sesion" method="POST")
+                input(type="hidden" name="_csrf" value=csrfToken)
+                input(type="submit" class="bg-cyan-800 py-2 px-8 rounded-lg" value="Cerrar Sesion")
+
+    nav(class="md:hidden mt-5 p-5 flex flex-col items-center justify-center gap-4 border-t-2 font-bold text-white" id="menu-items")
+        a(href="/mis-propiedades") Mis Propiedades
+        a(href="") Mi Perfil
+
+        form(action="/auth/cerrar-sesion" method="post")
+            input(type="hidden" name="_csrf" value=csrfToken)
+            input(type="submit" class="bg-cyan-800 py-2 px-10 rounded-lg hover:bg-cyan-900" value="Cerrar Sesión")
+
+script.
+    const menuResponsive = document.getElementById("menu-responsive");
+
+    if (menuResponsive) {
+        menuResponsive.addEventListener("click", function() {
+            const menu = document.getElementById("menu-items");
+            if (menu) {
+                menu.classList.toggle("hidden")
+            }            
+        });
+    }
