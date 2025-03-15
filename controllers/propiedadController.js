@@ -377,7 +377,7 @@ const sendMessage = async (req,res) => {
 
     if(!result.isEmpty()){
         // Consultar Precio y Categoria
-        res.render('propiedades/mostrar',{
+        return  res.render('propiedades/mostrar',{
             propiedad,
             pagina:propiedad.titulo,
             csrfToken: req.csrfToken(),

@@ -4,16 +4,20 @@ const emailRegister = async(data) => {
     var transport = nodemailer.createTransport({
         host: process.env.EMAIL_HOST,
         port: process.env.EMAIL_PORT,
+        secure: false,
         auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PWD
+        },
+        tls: {
+            rejectUnauthorized: false
         }
     });
     const { email,nombre,token} = data
 
     // Enviar email
     await transport.sendMail({
-        from: 'InmoLinking.com',
+        from: '"InmoLinking.com" <${process.env.EMAIL_USER}',
         to: email,
         subject: 'Confrimación de cuenta para InmoLinking.com',
         text: 'Confirma tu cuenta en InmoLinking.com',
@@ -40,7 +44,7 @@ const emailRecoverPwd = async(data) => {
 
     // Enviar email
     await transport.sendMail({
-        from: 'InmoLinking.com',
+        from: '"InmoLinking.com" <${process.env.EMAIL_USER}>',
         to: email,
         subject: 'Restablecer contraseña',
         text: 'Recupera el acceso a tu cuenta en InmoLinking.com',
