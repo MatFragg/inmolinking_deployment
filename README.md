@@ -4,17 +4,19 @@ InmoLinking es una aplicación web diseñada para facilitar la gestión de datos
 
 ## 🚀 Cómo Utilizar la Web?
 1️⃣ Accede a la Plataforma
-- Ingresa al siguiente enlace: InmoLinking
-- Si tienes una cuenta, inicia sesión.
-- Si eres nuevo, regístrate para empezar.
+- Ingresa al siguiente enlace: https://inmolinking-deployment.onrender.com/
+  - email:test@gmail.com
+  - password:123456
 
 2️⃣ Gestión de Propiedades
 - Agrega nuevas propiedades con información detallada.
 - Edita y elimina propiedades según sea necesario.
 - Filtra y busca propiedades fácilmente.
+
 3️⃣ Administración de Clientes y Contactos
 - Registra clientes interesados en propiedades.
 - Guarda y organiza la información de posibles compradores o arrendatarios.
+  
 4️⃣ Publicación de Anuncios
 - Comparte propiedades en la plataforma para que otros usuarios las vean.
 - Configura detalles como precio, ubicación y características.
